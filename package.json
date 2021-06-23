@@ -1,0 +1,20 @@
+{
+  "name": "json2sequelize-clause",
+  "version": "1.0.0",
+  "description": "this module function is to generate sequelize where cluase from json format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sequelize",
+    "json",
+    "converter"
+  ],
+  "author": "wisnuds",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
+  }
+}
