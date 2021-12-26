@@ -4,7 +4,7 @@
   "description": "this module function is to generate sequelize where cluase from json format",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "sequelize",
@@ -14,7 +14,12 @@
   "author": "wisnuds",
   "license": "ISC",
   "dependencies": {
+    "moment": "^2.29.1",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.4.5"
   }
 }
