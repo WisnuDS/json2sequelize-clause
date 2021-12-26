@@ -1,7 +1,11 @@
 {
   "name": "json2sequelize-clause",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "this module function is to generate sequelize where cluase from json format",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WisnuDS/json2sequelize-clause"
+  },
   "main": "index.js",
   "scripts": {
     "test": "jest"
