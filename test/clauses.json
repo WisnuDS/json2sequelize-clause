@@ -1,145 +1,183 @@
 {
-  "contains": {
+  "contains": [{
     "column": "name",
     "function_name": "contains",
     "value": "Farcha",
     "operator": null,
     "group": [],
     "expect": 2
-  },
+  }],
 
-  "does_not_contains": {
+  "does_not_contains": [{
     "column": "name",
     "function_name": "does_not_contains",
     "value": "Farcha",
     "operator": null,
     "group": [],
     "expect": 1
-  },
+  }],
 
-  "is": {
+  "is": [{
     "column": "name",
     "function_name": "is",
     "value": "Miqdad Farcha",
     "operator": null,
     "group": [],
     "expect": 1
-  },
+  }],
 
-  "is_not": {
+  "is_not": [{
     "column": "name",
     "function_name": "is_not",
     "value": "Miqdad Farcha",
     "operator": null,
     "group": [],
     "expect": 2
-  },
+  }],
 
-  "start_with": {
+  "start_with": [{
     "column": "name",
     "function_name": "start_with",
     "value": "Bing",
     "operator": null,
     "group": [],
     "expect": 1
-  },
+  }],
 
-  "end_with": {
+  "end_with": [{
     "column": "name",
     "function_name": "end_with",
     "value": "Farcha",
     "operator": null,
     "group": [],
     "expect": 2
-  },
+  }],
 
-  "equal": {
+  "equal": [{
     "column": "age",
     "function_name": "=",
     "value": 22,
     "operator": null,
     "group": [],
     "expect": 1
-  },
+  }],
 
-  "less_than": {
+  "less_than": [{
     "column": "age",
     "function_name": "<",
     "value": 22,
     "operator": null,
     "group": [],
     "expect": 2
-  },
+  }],
 
-  "more_than": {
+  "more_than": [{
     "column": "age",
     "function_name": ">",
     "value": 21,
     "operator": null,
     "group": [],
     "expect": 1
-  },
+  }],
 
-  "less_than_equal": {
+  "less_than_equal": [{
     "column": "age",
     "function_name": "<=",
     "value": 22,
     "operator": null,
     "group": [],
     "expect": 3
-  },
+  }],
 
-  "more_than_equal": {
+  "more_than_equal": [{
     "column": "age",
     "function_name": ">=",
     "value": 18,
     "operator": null,
     "group": [],
     "expect": 3
-  },
+  }],
 
-  "not_equal": {
+  "not_equal": [{
     "column": "age",
     "function_name": "<>",
     "value": 21,
     "operator": null,
     "group": [],
     "expect": 2
-  },
+  }],
 
-  "at": {
+  "at": [{
     "column": "birth_date",
     "function_name": "at",
     "value": "1999-01-20",
     "operator": null,
     "group": [],
     "expect": 1
-  },
+  }],
 
-  "at_between": {
+  "at_between": [{
     "column": "birth_date",
     "function_name": "at_between",
     "value": ["1999-01-19", "2003-04-12"],
     "operator": null,
     "group": [],
     "expect": 2
-  },
+  }],
 
-  "before": {
+  "before": [{
     "column": "birth_date",
     "function_name": "before",
     "value": "1999-01-19",
     "operator": null,
     "group": [],
     "expect": 1
-  },
+  }],
 
-  "after": {
+  "after": [{
     "column": "birth_date",
     "function_name": "after",
     "value": "1999-01-19",
     "operator": null,
     "group": [],
     "expect": 2
-  }
+  }],
+
+  "group_or": [
+    {
+      "column": "birth_date",
+      "function_name": "after",
+      "value": "1999-01-19",
+      "operator": "where",
+      "expect": 2
+    },
+    {
+      "column": "age",
+      "function_name": ">",
+      "value": 21,
+      "operator": "or"
+    }
+  ],
+
+  "group_or_more": [
+    {
+      "column": "birth_date",
+      "function_name": "after",
+      "value": "1999-01-19",
+      "operator": "where",
+      "expect": 2
+    },
+    {
+      "column": "age",
+      "function_name": ">",
+      "value": 21,
+      "operator": "or"
+    },
+    {
+      "column": "name",
+      "function_name": "contains",
+      "value": "farcha",
+      "operator": "and"
+    }
+  ]
 }

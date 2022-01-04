@@ -1,8 +1,7 @@
 const { Op } = require("sequelize");
 const moment = require('moment')
-function convert(clause) {
-    if (clause.group.length === 0) return generateFilter(clause)
-    else return generateGroupFilter(clause)
+function convert(clauses) {
+    return generateGroupFilter({}, clauses)
 }
 
 function generateFilter(filter) {
@@ -29,30 +28,52 @@ function generateFilter(filter) {
 }
 
 
-function generateGroupFilter(groupFilter) {
-    if (groupFilter.length === 0)
-        return
+function generateGroupFilter(structure, clauses, current=0) {
+    if (clauses.length === 0 || current >= clauses.length) {
+        return structure
+    }
 
-    let structure = {}
-    let group = []
-    for (const groupFilterElement of groupFilter.filters) {
-        if (groupFilterElement.group.length === 0){
-            let filter = generateFilter(groupFilterElement)
-            if (!filter) throw Error("ERROR : Filter is empty")
-            group.push(filter)
+    if (clauses.length === 1) {
+        return generateFilter(clauses[0])
+    }
+
+    if (!structure) {
+        if (clauses[1].operator === 'or') {
+            structure = {
+                [Op.or]: [
+                  generateFilter(clauses[0]),
+                  generateFilter(clauses[1])
+                ]
+            }
         } else {
-            let groupFil = generateGroupFilter(groupFilterElement)
-            group.push(groupFil)
+            structure = {
+                [Op.and]: [
+                    generateFilter(clauses[0]),
+                    generateFilter(clauses[1])
+                ]
+            }
+        }
+        current+=2
+        return generateGroupFilter(structure, clauses, current)
+    }
+
+    if (clauses[current].operator === 'or') {
+        structure = {
+            [Op.or]: [
+                structure,
+                generateFilter(clauses[current])
+            ]
+        }
+    } else {
+        structure = {
+            [Op.and]: [
+                structure,
+                generateFilter(clauses[current])
+            ]
         }
     }
-
-    if (groupFilter.operator === 'AND'){
-        structure[Op.and] = group
-    } else {
-        structure[Op.or] = group
-    }
-
-    return structure
+    current++
+    return generateGroupFilter(structure, clauses, current)
 }
 
 function convertToDate (values) {

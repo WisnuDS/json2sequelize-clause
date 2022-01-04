@@ -20,14 +20,20 @@ You can import library and use it for convert json to sequelize where clause
 const User = require('./config')
 const convert = require('json2sequelize-clause')
 
-const clause = {
-    "column": "name",
-    "function_name": "contains",
-    "value": "Farcha",
-    "operator": null,
-    "group": [],
-    "expect": 2
-}
+const clause = [
+  {
+      "column": "name",
+      "function_name": "contains",
+      "value": "Farcha",
+      "operator": "where"
+  },
+  {
+      "column": "age",
+      "function_name": ">",
+      "value": 21,
+      "operator": "or"
+  }
+]
 
 User.findAll({
     where: convert(clauses.does_not_contains)
@@ -43,6 +49,8 @@ For more example clause you can access [here](https://github.com/WisnuDS/json2se
 * [WisnuDS](https://www.instagram.com/wisnuds__/)
 
 ## Version History
+* 1.0.3
+  * Update structure and recursive strategy
 * 1.0.2
     * Update documentation in README.md
 * 1.0.1
